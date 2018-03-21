@@ -1,4 +1,4 @@
-# print the progress of passed days of this year
+# print the progress of past days of this year
 
 ```
 $ ./year_prgress.rb

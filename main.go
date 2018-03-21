@@ -16,25 +16,25 @@ func EndOfYear(t time.Time) time.Time {
 }
 
 // Calc get the values
-func Calc() (percent, passedDays, totalDays int) {
-	passedDays = time.Now().YearDay()
+func Calc() (percent, pastDays, totalDays int) {
+	pastDays = time.Now().YearDay()
 	totalDays = EndOfYear(time.Now()).YearDay()
-	percent = int(math.Round((float64(passedDays) / float64(totalDays)) * 100))
+	percent = int(math.Round((float64(pastDays) / float64(totalDays)) * 100))
 	return
 }
 
 // ProgressBar print the progress bar
 func ProgressBar() {
-	percent, passedDays, totalDays := Calc()
+	percent, pastDays, totalDays := Calc()
 	bar := strings.Repeat("▓", percent) + strings.Repeat("░", (100-percent))
-	fmt.Printf("%s %d%%(%d/%d)\n", bar, percent, passedDays, totalDays)
+	fmt.Printf("%s %d%%(%d/%d)\n", bar, percent, pastDays, totalDays)
 }
 
 // ProgressGrid print as grid
 func ProgressGrid() {
-	percent, passedDays, totalDays := Calc()
+	percent, pastDays, totalDays := Calc()
 	for i := 1; i <= totalDays; i++ {
-		if i <= passedDays {
+		if i <= pastDays {
 			fmt.Print("■")
 		} else {
 			fmt.Print("□")
@@ -43,7 +43,7 @@ func ProgressGrid() {
 			fmt.Print("\n")
 		}
 	}
-	fmt.Printf(" %d%%(%d/%d)\n", percent, passedDays, totalDays)
+	fmt.Printf(" %d%%(%d/%d)\n", percent, pastDays, totalDays)
 }
 
 func main() {
